@@ -1,7 +1,7 @@
 {
-  "name": "tiktok-clone",
+  "name": "twitter-clone",
   "version": "1.0.0",
-  "description": "tiktok clone",
+  "description": "twitter clone",
   "main": "src/App.js",
   "scripts": {
     "start": "parcel src/index.html",
@@ -11,6 +11,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.1",
+    "buffer": "^6.0.3",
     "eslint": "8.8.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "^2.26.0",
@@ -21,9 +22,16 @@
     "process": "^0.11.10"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-brands-svg-icons": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^0.27.2",
+    "firebase": "^9.9.0",
     "formik": "^2.2.9",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-router-dom": "^6.3.0"
   },
   "browserslist": [
