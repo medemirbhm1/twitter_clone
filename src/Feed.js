@@ -3,6 +3,7 @@ import userContext from "./userContext";
 import AddPost from "./AddPost";
 import { ref, query, orderByChild, equalTo, get } from "firebase/database";
 import { db } from "./backend/firebase";
+import Post from "./Post";
 import "./scss/feed.scss";
 const Feed = ({ topic }) => {
   const [user] = useContext(userContext);
@@ -17,14 +18,25 @@ const Feed = ({ topic }) => {
     setPosts([]);
     get(q).then((snapshot) => {
       snapshot.forEach((child) => {
-        setPosts((old) => [...old, child.val()]);
+        setPosts((old) => [...old, { key: child.key, ...child.val() }]);
       });
     });
   }, [topic]);
   return (
     <div className="feed">
       {user && <AddPost user={user} />}
-      <div className="posts"></div>
+      <div className="posts">
+        {posts.map(({ key, text, hasImg, postedBy, topic, postedAt }) => (
+          <Post
+            key={key}
+            text={text}
+            hasImg={hasImg}
+            postedBy={postedBy}
+            topic={topic}
+            postedAt={postedAt}
+          />
+        ))}
+      </div>
     </div>
   );
 };

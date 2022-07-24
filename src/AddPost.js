@@ -26,6 +26,7 @@ const AddPost = ({ user }) => {
       topic: values.topic,
       hasImg: has,
       postedBy: user.uid,
+      postedAt: new Date().valueOf(),
     });
     props.resetForm();
   }

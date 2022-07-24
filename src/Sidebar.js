@@ -15,11 +15,26 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { auth, provider } from "./backend/firebase";
 import { signInWithPopup } from "firebase/auth";
 import userContext from "./userContext";
-
+import { db } from "./backend/firebase";
+import { child, get, ref, set } from "firebase/database";
 const signInWithGoogle = () => {
-  signInWithPopup(auth, provider).catch((error) => {
-    console.log(error);
-  });
+  signInWithPopup(auth, provider)
+    .then((a) => {
+      const dbRef = ref(db);
+      const { uid, email, displayName, photoURL } = a.user;
+      get(child(dbRef, "users/" + uid)).then((snapshot) => {
+        if (!snapshot.exists()) {
+          set(ref(db, "users/" + uid), {
+            name: displayName,
+            email: email,
+            imgUrl: photoURL,
+          });
+        }
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 const logout = () => {
   auth.signOut();
