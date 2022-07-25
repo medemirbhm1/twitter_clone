@@ -28,6 +28,7 @@ const signInWithGoogle = () => {
             name: displayName,
             email: email,
             imgUrl: photoURL,
+            saveCount: 0,
           });
         }
       });

@@ -3,9 +3,9 @@
   width: calc(100% - 226.16px * 2);
   margin-left: 226.16;
   border-right: 0.8px solid rgba($color: #fff, $alpha: 0.2);
-  border-bottom: 0.8px solid rgba($color: #fff, $alpha: 0.2);
   .addPost {
     padding: 15px 20px;
+    border-bottom: 0.8px solid rgba($color: #fff, $alpha: 0.2);
     h3 {
       color: #fff;
       font-size: 20px;
@@ -15,8 +15,8 @@
       display: flex;
       gap: 10px;
       img {
-        width: 60px;
-        height: 60px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
       }
       .inputs {
@@ -80,6 +80,70 @@
             border-radius: 50px;
             font-weight: 600;
             font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+  .posts {
+    .post {
+      padding: 15px 20px;
+      display: flex;
+      gap: 10px;
+      border-bottom: 0.8px solid rgba($color: #fff, $alpha: 0.2);
+      > img {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+      }
+      > div {
+        flex: 1;
+        .up {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          > span {
+            &:first-child {
+              color: #fff;
+              font-weight: 500;
+              font-size: 16px;
+            }
+            &:nth-child(2) {
+              font-size: 13px;
+              color: $gray;
+            }
+          }
+          button {
+            border: 0;
+            background-color: transparent;
+            cursor: pointer;
+            margin-left: auto;
+            color: $blue;
+            cursor: pointer;
+          }
+        }
+        p {
+          margin-top: 5px;
+          color: #fff;
+        }
+        .image {
+          margin-top: 10px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center center;
+          height: 500px;
+          border-radius: 5px;
+        }
+        .react {
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          button {
+            background-color: transparent;
+            border: 0;
+            color: $blue;
+            font-size: 20px;
           }
         }
       }

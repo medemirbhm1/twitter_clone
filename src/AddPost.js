@@ -27,6 +27,7 @@ const AddPost = ({ user }) => {
       hasImg: has,
       postedBy: user.uid,
       postedAt: new Date().valueOf(),
+      likeCount: 0,
     });
     props.resetForm();
   }

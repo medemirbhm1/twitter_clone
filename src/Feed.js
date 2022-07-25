@@ -24,16 +24,17 @@ const Feed = ({ topic }) => {
   }, [topic]);
   return (
     <div className="feed">
-      {user && <AddPost user={user} />}
+      {user && <AddPost user={user}  />}
       <div className="posts">
-        {posts.map(({ key, text, hasImg, postedBy, topic, postedAt }) => (
+        {posts.map(({ key, text, hasImg, postedBy, postedAt, likers }) => (
           <Post
             key={key}
+            id={key}
             text={text}
             hasImg={hasImg}
             postedBy={postedBy}
-            topic={topic}
             postedAt={postedAt}
+            likers={likers}
           />
         ))}
       </div>
