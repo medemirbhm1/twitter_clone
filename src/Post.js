@@ -28,22 +28,34 @@ import {
   faHeart as faHeartSolid,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Post = ({ id, text, hasImg, postedBy, postedAt }) => {
+const Post = ({ id, text, hasImg, postedBy, postedAt, likes, likeCount }) => {
   const [poster, setPoster] = useState(null);
   const [timePassed, setTimePassed] = useState("");
   const [imgUrl, setImgUrl] = useState("");
+  const [likesC, setLikesC] = useState(likeCount);
+  const [liked, setLiked] = useState(false);
   const [user] = useContext(userContext);
   useEffect(() => {
+    //getting poster info
     const dbRef = ref(db);
     get(child(dbRef, `users/${postedBy}`)).then((snapshot) => {
       setPoster(snapshot.val());
     });
+    //calculating time passed since posting
     calcTimePassed(postedAt);
     if (hasImg) {
       const imgRef = storageRef(storage, "postImgs/" + id);
       getDownloadURL(imgRef)
         .then((r) => setImgUrl(r))
         .catch((e) => console.log(e));
+    }
+    //check if user has liked this post before
+    if (likeCount > 0) {
+      if (likes[user.uid]) {
+        setLiked(true);
+      }
+    } else {
+      setLiked(false);
     }
   }, []);
   function calcTimePassed(pt) {
@@ -74,6 +86,12 @@ const Post = ({ id, text, hasImg, postedBy, postedAt }) => {
   }
   function toggleLike() {
     const postRef = ref(db, "/posts/" + id);
+    if (liked) {
+      setLikesC((p) => p - 1);
+    } else {
+      setLikesC((p) => p + 1);
+    }
+    setLiked((p) => !p);
     runTransaction(postRef, (post) => {
       if (post) {
         if (post.likes && post.likes[user.uid]) {
@@ -132,12 +150,16 @@ const Post = ({ id, text, hasImg, postedBy, postedAt }) => {
         ) : null}
         <div className="react">
           <button onClick={toggleLike}>
-            <span>
-              <FontAwesomeIcon icon={faHeart} />
-            </span>
-            <span>
-              <FontAwesomeIcon icon={faHeartSolid} />
-            </span>
+            {liked ? (
+              <span>
+                <FontAwesomeIcon icon={faHeartSolid} />
+              </span>
+            ) : (
+              <span>
+                <FontAwesomeIcon icon={faHeart} />
+              </span>
+            )}
+            <p>{likesC}</p>
           </button>
           <button>
             <FontAwesomeIcon icon={faComment} />

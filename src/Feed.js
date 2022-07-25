@@ -24,19 +24,22 @@ const Feed = ({ topic }) => {
   }, [topic]);
   return (
     <div className="feed">
-      {user && <AddPost user={user}  />}
+      {user && <AddPost user={user} />}
       <div className="posts">
-        {posts.map(({ key, text, hasImg, postedBy, postedAt, likers }) => (
-          <Post
-            key={key}
-            id={key}
-            text={text}
-            hasImg={hasImg}
-            postedBy={postedBy}
-            postedAt={postedAt}
-            likers={likers}
-          />
-        ))}
+        {posts.map(
+          ({ key, text, hasImg, postedBy, postedAt, likes, likeCount }) => (
+            <Post
+              key={key}
+              id={key}
+              text={text}
+              hasImg={hasImg}
+              postedBy={postedBy}
+              postedAt={postedAt}
+              likeCount={likeCount}
+              likes={likes}
+            />
+          )
+        )}
       </div>
     </div>
   );
