@@ -21,6 +21,7 @@ const Feed = ({ topic }) => {
         setPosts((old) => [...old, { key: child.key, ...child.val() }]);
       });
     });
+    
   }, [topic]);
   return (
     <div className="feed">

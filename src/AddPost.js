@@ -43,7 +43,7 @@ const AddPost = ({ user }) => {
         onSubmit={handleSubmit}
       >
         <Form>
-          <img src={user.photoURL} alt="userImg" />
+          <img src={user.imgUrl} alt="userImg" />
           <div className="inputs">
             <MyTextArea
               label="First Name"
