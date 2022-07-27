@@ -1,7 +1,7 @@
 @use "./colors.scss" as *;
 .feed {
   width: calc(100% - 226.16px * 2);
-  margin-left: 226.16;
+  margin-left: 226.16px;
   border-right: 0.8px solid rgba($color: #fff, $alpha: 0.2);
   .addPost {
     padding: 15px 20px;
@@ -116,7 +116,6 @@
             }
           }
           button {
-            z-index: 2;
             border: 0;
             background-color: transparent;
             cursor: pointer;
@@ -215,8 +214,29 @@
               font-size: 14px;
             }
           }
+          a {
+            margin-left: auto;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 14px;
+            color: $blue;
+          }
         }
       }
     }
+  }
+}
+@media (max-width: 991px) {
+  .feed {
+    width: calc(100% - 226.16px);
+  }
+}
+@media (max-width: 767px) {
+  .feed {
+    margin-top: 20px;
+    width: calc(100%);
+    margin-left: 0;
+    border-top: 0.8px solid rgba($color: #fff, $alpha: 0.2);
+    border-left: 0.8px solid rgba($color: #fff, $alpha: 0.2);
   }
 }

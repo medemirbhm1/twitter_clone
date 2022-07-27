@@ -10,8 +10,9 @@ import {
   faMusic,
   faFeatherPointed,
   faArrowRightFromBracket,
+  faBookmark,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { auth, provider } from "./backend/firebase";
 import { signInWithPopup } from "firebase/auth";
 import userContext from "./userContext";
@@ -40,10 +41,10 @@ const signInWithGoogle = () => {
 const logout = () => {
   auth.signOut();
 };
-const Sidebar = ({ setTopic }) => {
+const Sidebar = ({ setTopic, sidebarActive, setSidebarActive }) => {
   const [user] = useContext(userContext);
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${sidebarActive ? "active" : null}`}>
       <div className="top">
         <Link to="/">
           <div className="logo">
@@ -52,44 +53,76 @@ const Sidebar = ({ setTopic }) => {
         </Link>
         <ul className="links">
           <li>
-            <button onClick={() => setTopic("")}>
+            <Link to="/" onClick={() => setTopic("")}>
               <span>
                 <FontAwesomeIcon icon={faEarthAfrica} />
               </span>
               <span>All</span>
-            </button>
+            </Link>
           </li>
           <li>
-            <button onClick={() => setTopic("coding")}>
+            <Link
+              to="/"
+              onClick={() => {
+                setTopic("coding");
+                setSidebarActive(false);
+              }}
+            >
               <span>
                 <FontAwesomeIcon icon={faCode} />
               </span>
               <span>Coding</span>
-            </button>
+            </Link>
           </li>
           <li>
-            <button onClick={() => setTopic("football")}>
+            <Link
+              to="/"
+              onClick={() => {
+                setTopic("football");
+                setSidebarActive(false);
+              }}
+            >
               <span>
                 <FontAwesomeIcon icon={faFutbol} />
               </span>
               <span>Football</span>
-            </button>
+            </Link>
           </li>
           <li>
-            <button onClick={() => setTopic("music")}>
+            <Link
+              to="/"
+              onClick={() => {
+                setTopic("music");
+                setSidebarActive(false);
+              }}
+            >
               <span>
                 <FontAwesomeIcon icon={faMusic} />
               </span>
               <span>Music</span>
-            </button>
+            </Link>
           </li>
           <li>
-            <button>
+            <Link
+              to={`saved/${user.uid}`}
+              onClick={() => setSidebarActive(false)}
+            >
+              <span>
+                <FontAwesomeIcon icon={faBookmark} />
+              </span>
+              <span>Saved</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={`profile/${user.uid}`}
+              onClick={() => setSidebarActive(false)}
+            >
               <span>
                 <FontAwesomeIcon icon={faUser} />
               </span>
               <span>Profile</span>
-            </button>
+            </Link>
           </li>
         </ul>
         <button className="btn tweet">

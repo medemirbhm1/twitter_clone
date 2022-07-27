@@ -33,7 +33,16 @@ import {
 import { Field, Form, Formik } from "formik";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
-const Post = ({ id, text, hasImg, postedBy, postedAt, likes, likeCount }) => {
+const Post = ({
+  id,
+  text,
+  hasImg,
+  postedBy,
+  postedAt,
+  likes,
+  likeCount,
+  inFeed,
+}) => {
   const [poster, setPoster] = useState(null);
   const [timePassed, setTimePassed] = useState("");
   const [imgUrl, setImgUrl] = useState("");
@@ -76,15 +85,22 @@ const Post = ({ id, text, hasImg, postedBy, postedAt, likes, likeCount }) => {
     } else {
       setSaved(false);
     }
-    //get two latest comments
-    const latestCommentsQuery = query(
-      ref(db, "comments/" + id),
-      orderByKey(),
-      limitToLast(3)
-    );
-    get(latestCommentsQuery).then((snapshot) => {
-      setComments(snapshot.val());
-    });
+    if (inFeed) {
+      //get two latest comments
+      const latestCommentsQuery = query(
+        ref(db, "comments/" + id),
+        orderByKey(),
+        limitToLast(3)
+      );
+      get(latestCommentsQuery).then((snapshot) => {
+        setComments(snapshot.val());
+      });
+    } else {
+      get(ref(db, `comments/${id}`)).then((snapshot) => {
+        setComments(snapshot.val());
+      });
+      setCommenting(true);
+    }
   }, []);
   function calcTimePassed(pt) {
     pt = new Date().valueOf() - pt;
@@ -102,6 +118,8 @@ const Post = ({ id, text, hasImg, postedBy, postedAt, likes, likeCount }) => {
       pt = `${Math.floor(pt / (1000 * 60))} min`;
     } else if (pt > 1000) {
       pt = `${Math.floor(pt / 1000)} s`;
+    } else {
+      pt = "just now";
     }
     return pt;
   }
@@ -241,6 +259,16 @@ const Post = ({ id, text, hasImg, postedBy, postedAt, likes, likeCount }) => {
               onSubmit={async (values, props) => {
                 const commentsListRef = ref(db, "comments/" + id);
                 const newCommentRef = push(commentsListRef);
+                setComments((p) => {
+                  return {
+                    ...p,
+                    newCommentRef: {
+                      text: values.comment,
+                      by: user.uid,
+                      commentedAt: new Date().valueOf(),
+                    },
+                  };
+                });
                 set(newCommentRef, {
                   text: values.comment,
                   by: user.uid,
@@ -272,6 +300,7 @@ const Post = ({ id, text, hasImg, postedBy, postedAt, likes, likeCount }) => {
                     />
                   ))
                 : null}
+              {inFeed ? <Link to={`/post/${id}`}>view more comments</Link> : ""}
             </div>
           </>
         ) : null}

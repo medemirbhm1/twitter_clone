@@ -26,6 +26,10 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
+button:focus {
+  outline: 0ch  
+  ;
+}
 a {
   text-decoration: none;
   color: inherit;
@@ -77,7 +81,4 @@ textarea {
 .app {
   background-color: $dark-blue;
   min-height: 100vh;
-  .container {
-    display: flex;
-  }
 }

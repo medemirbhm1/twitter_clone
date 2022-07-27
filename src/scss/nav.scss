@@ -1,0 +1,38 @@
+
+.nav {
+  display: none;
+}
+@media (max-width: 767px) {
+  .nav {
+    display: flex;
+    padding-top: 20px;
+    color: #fff;
+    justify-content: space-between;
+    align-items: center;
+    .hamburger {
+      background-color: transparent;
+      border: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 30px;
+      gap: 6px;
+      span {
+        background-color: #fff;
+        height: 1.8px;
+        width: 100%;
+        &:nth-child(2) {
+          width: 75%;
+        }
+        &:last-child {
+          width: 50%;
+        }
+      }
+      &.active {
+        span {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

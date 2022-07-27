@@ -26,7 +26,7 @@
     ul.links {
       margin-bottom: 10px;
       li {
-        button {
+        a {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -35,7 +35,6 @@
           padding: 10px 30px 10px 10px;
           width: fit-content;
           cursor: pointer;
-          background-color: transparent;
           border: 0;
           color: inherit;
           &:hover {
@@ -83,12 +82,20 @@
 }
 @media (max-width: 767px) {
   .sidebar {
+    transition: transform 0.3s ease;
+    top: 0;
+    transform: translateX(-100px);
     align-items: center;
     padding-right: 15px;
+    background-color: $dark-blue;
+    z-index: 10;
+    &.active {
+      transform: translateX(0px);
+    }
     .top {
       ul.links {
         li {
-          button {
+          a {
             padding-right: 10px;
             text-align: center;
             span:last-child {

@@ -33,7 +33,6 @@ const AddPost = ({ user }) => {
   }
   return (
     <div className="addPost">
-      <h3>Home</h3>
       <Formik
         initialValues={{
           text: "",

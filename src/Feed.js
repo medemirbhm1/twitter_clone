@@ -1,9 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import userContext from "./userContext";
 import AddPost from "./AddPost";
-import { ref, query, orderByChild, equalTo, get } from "firebase/database";
+import {
+  ref,
+  query,
+  orderByChild,
+  equalTo,
+  get,
+  limitToLast,
+} from "firebase/database";
 import { db } from "./backend/firebase";
 import Post from "./Post";
+import Nav from "./Nav";
 import "./scss/feed.scss";
 const Feed = ({ topic }) => {
   const [user] = useContext(userContext);
@@ -18,10 +26,12 @@ const Feed = ({ topic }) => {
     setPosts([]);
     get(q).then((snapshot) => {
       snapshot.forEach((child) => {
-        setPosts((old) => [...old, { key: child.key, ...child.val() }]);
+        setPosts(
+          (old) => [...old, { key: child.key, ...child.val() }],
+          limitToLast(20)
+        );
       });
     });
-    
   }, [topic]);
   return (
     <div className="feed">
@@ -38,6 +48,7 @@ const Feed = ({ topic }) => {
               postedAt={postedAt}
               likeCount={likeCount}
               likes={likes}
+              inFeed={true}
             />
           )
         )}

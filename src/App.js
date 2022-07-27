@@ -9,12 +9,14 @@ import { auth, db } from "./backend/firebase";
 import Profile from "./Profile";
 import { child, get, ref } from "firebase/database";
 import Loader from "./Loader";
-
+import Nav from "./Nav";
+import PostPage from "./PostPage";
 const App = () => {
   const user = useState(null);
   const setUser = user[1];
   const [topic, setTopic] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [sidebarActive, setSidebarActive] = useState(false);
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((u) => {
       if (u) {
@@ -40,9 +42,15 @@ const App = () => {
           <userContext.Provider value={user}>
             <div className="container">
               <Router>
-                <Sidebar setTopic={setTopic} />
+                <Nav setSidebarActive={setSidebarActive} />
+                <Sidebar
+                  setTopic={setTopic}
+                  sidebarActive={sidebarActive}
+                  setSidebarActive={setSidebarActive}
+                />
                 <Routes>
                   <Route path="/" element={<Feed topic={topic} />} />
+                  <Route path="/post/:id" element={<PostPage />} />
                   <Route path="/profile/:id" element={<Profile topic="" />} />
                 </Routes>
               </Router>
