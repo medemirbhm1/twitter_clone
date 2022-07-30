@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import "./scss/nav.scss";
 const Nav = ({ setSidebarActive }) => {
   const { pathname } = useLocation();

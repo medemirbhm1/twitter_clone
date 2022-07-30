@@ -7,11 +7,9 @@ import {
   orderByChild,
   equalTo,
   get,
-  limitToLast,
 } from "firebase/database";
 import { db } from "./backend/firebase";
 import Post from "./Post";
-import Nav from "./Nav";
 import "./scss/feed.scss";
 const Feed = ({ topic }) => {
   const [user] = useContext(userContext);
