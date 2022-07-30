@@ -1,19 +1,15 @@
 @import "https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap";
 .sidebar {
   height: 100vh;
+  color: #fff;
   border-right: .8px solid #fff3;
   flex-direction: column;
-  justify-content: space-between;
   padding: 10px 30px 20px 0;
   display: flex;
   position: fixed;
 }
 
-.sidebar .top {
-  color: #fff;
-}
-
-.sidebar .top .logo {
+.sidebar .logo {
   width: fit-content;
   border-radius: 50%;
   justify-content: center;
@@ -24,15 +20,15 @@
   display: flex;
 }
 
-.sidebar .top .logo:hover {
+.sidebar .logo:hover {
   background-color: #ffffff1a;
 }
 
-.sidebar .top ul.links {
+.sidebar ul.links {
   margin-bottom: 10px;
 }
 
-.sidebar .top ul.links li a {
+.sidebar ul.links li a {
   width: fit-content;
   cursor: pointer;
   color: inherit;
@@ -45,34 +41,20 @@
   display: flex;
 }
 
-.sidebar .top ul.links li a:hover {
+.sidebar ul.links li a:hover {
   background-color: #ffffff1a;
 }
 
-.sidebar .top ul.links li a span:first-child {
+.sidebar ul.links li a span:first-child {
   width: 30px;
   font-size: 22px;
 }
 
-.sidebar .top ul.links li a span:last-child {
+.sidebar ul.links li a span:last-child {
   font-size: 18px;
 }
 
-.sidebar .top .btn.tweet {
-  color: #fff;
-  background-color: #1d9bf0;
-  border: 0;
-  border-radius: 50px;
-  padding: 12px 70px;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.sidebar .top .btn.tweet span:first-child {
-  display: none;
-}
-
-.sidebar .bottom .btn {
+.sidebar .btn {
   color: #15202b;
   width: 100%;
   background-color: #fff;
@@ -102,16 +84,16 @@
     transform: translateX(0);
   }
 
-  .sidebar .top ul.links li a {
+  .sidebar ul.links li a {
     text-align: center;
     padding-right: 10px;
   }
 
-  .sidebar .top ul.links li a span:last-child {
+  .sidebar ul.links li a span:last-child {
     display: none;
   }
 
-  .sidebar .top .btn.tweet {
+  .sidebar .btn.tweet {
     width: fit-content;
     height: 50px;
     border-radius: 50%;
@@ -121,20 +103,20 @@
     display: flex;
   }
 
-  .sidebar .top .btn.tweet span:first-child {
+  .sidebar .btn.tweet span:first-child {
     display: inline;
   }
 
-  .sidebar .top .btn.tweet span:last-child {
+  .sidebar .btn.tweet span:last-child {
     display: none;
   }
 
-  .sidebar .bottom .btn {
+  .sidebar .btn {
     width: 40px;
     padding: 10px;
   }
 
-  .sidebar .bottom .btn span:last-child {
+  .sidebar .btn span:last-child {
     display: none;
   }
 }

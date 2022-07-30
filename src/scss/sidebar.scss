@@ -4,82 +4,66 @@
   position: fixed;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 10px 30px 20px 0;
   height: 100vh;
   border-right: 0.8px solid rgba($color: #fff, $alpha: 0.2);
-  .top {
-    color: #fff;
-    .logo {
-      font-size: 30px;
-      padding: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      margin-bottom: 40px;
-      border-radius: 50%;
-      &:hover {
-        background-color: rgba($color: #fff, $alpha: 0.1);
-      }
+  color: #fff;
+  .logo {
+    font-size: 30px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin-bottom: 40px;
+    border-radius: 50%;
+    &:hover {
+      background-color: rgba($color: #fff, $alpha: 0.1);
     }
-    ul.links {
-      margin-bottom: 10px;
-      li {
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 20px;
-          border-radius: 50px;
-          padding: 10px 30px 10px 10px;
-          width: fit-content;
-          cursor: pointer;
-          border: 0;
-          color: inherit;
-          &:hover {
-            background-color: rgba($color: #fff, $alpha: 0.1);
-          }
-          span:first-child {
-            font-size: 22px;
-            width: 30px;
-          }
-          span:last-child {
-            font-size: 18px;
-          }
+  }
+  ul.links {
+    margin-bottom: 10px;
+    li {
+      a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 50px;
+        padding: 10px 30px 10px 10px;
+        width: fit-content;
+        cursor: pointer;
+        border: 0;
+        color: inherit;
+        &:hover {
+          background-color: rgba($color: #fff, $alpha: 0.1);
+        }
+        span:first-child {
+          font-size: 22px;
+          width: 30px;
+        }
+        span:last-child {
+          font-size: 18px;
         }
       }
     }
-    .btn.tweet {
-      background-color: $blue;
-      border: 0;
-      padding: 12px 70px;
-      border-radius: 50px;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 600;
-      span:first-child {
-        display: none;
-      }
-    }
   }
-  .bottom {
-    .btn {
-      background-color: #fff;
-      color: $dark-blue;
-      border: 0;
-      font-size: 16px;
-      padding: 12px 0;
-      width: 100%;
-      font-weight: 500;
-      border-radius: 50px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      justify-content: center;
-    }
+  .btn {
+    background-color: #fff;
+    color: $dark-blue;
+    border: 0;
+    font-size: 16px;
+    padding: 12px 0;
+    width: 100%;
+    font-weight: 500;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
   }
 }
+
 @media (max-width: 767px) {
   .sidebar {
     transition: transform 0.3s ease;
@@ -92,41 +76,37 @@
     &.active {
       transform: translateX(0px);
     }
-    .top {
-      ul.links {
-        li {
-          a {
-            padding-right: 10px;
-            text-align: center;
-            span:last-child {
-              display: none;
-            }
+    ul.links {
+      li {
+        a {
+          padding-right: 10px;
+          text-align: center;
+          span:last-child {
+            display: none;
           }
         }
       }
-      .btn.tweet {
-        padding: 15px;
-        border-radius: 50%;
-        display: flex;
-        width: fit-content;
-        align-items: center;
-        justify-content: center;
-        height: 50px;
-        span:first-child {
-          display: inline;
-        }
-        span:last-child {
-          display: none;
-        }
+    }
+    .btn.tweet {
+      padding: 15px;
+      border-radius: 50%;
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      span:first-child {
+        display: inline;
+      }
+      span:last-child {
+        display: none;
       }
     }
-    .bottom {
-      .btn {
-        padding: 10px;
-        width: 40px;
-        span:last-child {
-          display: none;
-        }
+    .btn {
+      padding: 10px;
+      width: 40px;
+      span:last-child {
+        display: none;
       }
     }
   }
