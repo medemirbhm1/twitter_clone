@@ -26,18 +26,15 @@ const Feed = ({ topic }) => {
     setPosts([]);
     get(q).then((snapshot) => {
       snapshot.forEach((child) => {
-        setPosts(
-          (old) => [...old, { key: child.key, ...child.val() }],
-          limitToLast(20)
-        );
+        setPosts((old) => [...old, { key: child.key, ...child.val() }]);
       });
     });
   }, [topic]);
   return (
-    <div className="feed">
+    <div className="feed sec">
       {user && <AddPost user={user} />}
       <div className="posts">
-        {posts.map(
+        {posts.reverse().map(
           ({ key, text, hasImg, postedBy, postedAt, likes, likeCount }) => (
             <Post
               key={key}

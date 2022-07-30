@@ -23,9 +23,11 @@ const Comment = ({ comment, calcTimePassed, id, postId }) => {
   }
   return commenter ? (
     <div className="comment">
-      <img src={commenter.imgUrl} alt="" />
+      <Link to={`/profile/${comment.by}`}>
+        <img src={commenter.imgUrl} referrerPolicy="no-referrer" alt="" />
+      </Link>
       <div className="text">
-        <Link to="/profile">{commenter.name}</Link>
+        <Link to={`/profile/${comment.by}`}>{commenter.name}</Link>
         <span className="time">{timePassed}</span>
         <p>{comment.text}</p>
       </div>

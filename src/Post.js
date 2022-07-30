@@ -125,13 +125,13 @@ const Post = ({
   }
   function deletePost() {
     remove(ref(db, "posts/" + id));
+    remove(ref(db, "comments/" + id));
     if (hasImg) {
       deleteObject(storageRef(storage, "postImgs/" + id));
     }
     setPoster(null);
   }
-  function toggleLike(e) {
-    e.stopPropagation();
+  function toggleLike() {
     if (user) {
       const postRef = ref(db, "/posts/" + id);
       if (liked) {
@@ -157,8 +157,7 @@ const Post = ({
       });
     }
   }
-  function toggleSave(e) {
-    e.stopPropagation();
+  function toggleSave() {
     if (user) {
       const userRef = ref(db, "/users/" + user.uid);
       setSaved((p) => !p);
@@ -188,10 +187,12 @@ const Post = ({
   }
   return poster ? (
     <div className="post">
-      <img src={poster.imgUrl} alt="" />
+      <Link to={`/profile/${postedBy}`}>
+        <img src={poster.imgUrl} referrerPolicy="no-referrer" alt="" />
+      </Link>
       <div>
         <div className="up">
-          <span>{poster.name}</span>
+          <Link to={`/profile/${postedBy}`}>{poster.name}</Link>
           <span>
             {poster.email} . {timePassed}
           </span>
@@ -224,7 +225,7 @@ const Post = ({
             <span className="number">{likesC}</span>
           </div>
           <div>
-            <button onClick={() => setCommenting((p) => !p)}>
+            <button onClick={() => (user ? setCommenting((p) => !p) : null)}>
               {commenting ? (
                 <span>
                   <FontAwesomeIcon icon={faCommentSolid} />

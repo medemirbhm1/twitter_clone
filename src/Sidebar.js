@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import "./scss/sidebar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { faGoogle, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import {
   faEarthAfrica,
   faFutbol,
   faCode,
   faMusic,
-  faFeatherPointed,
   faArrowRightFromBracket,
   faBookmark,
   faUser,
@@ -30,6 +29,8 @@ const signInWithGoogle = () => {
             email: email,
             imgUrl: photoURL,
             saveCount: 0,
+            followerCount: 0,
+            followingCount: 0,
           });
         }
       });
@@ -38,22 +39,31 @@ const signInWithGoogle = () => {
       console.log(error);
     });
 };
-const logout = () => {
-  auth.signOut();
-};
 const Sidebar = ({ setTopic, sidebarActive, setSidebarActive }) => {
   const [user] = useContext(userContext);
+  const navigate = useNavigate("");
+  const logout = () => {
+    auth.signOut();
+    navigate("/");
+    setSidebarActive(false);
+  };
   return (
     <div className={`sidebar ${sidebarActive ? "active" : null}`}>
       <div className="top">
-        <Link to="/">
+        <Link to="/" onClick={() => window.location.reload()}>
           <div className="logo">
             <FontAwesomeIcon icon={faTwitter} />
           </div>
         </Link>
         <ul className="links">
           <li>
-            <Link to="/" onClick={() => setTopic("")}>
+            <Link
+              to="/"
+              onClick={() => {
+                setTopic("");
+                setSidebarActive(false);
+              }}
+            >
               <span>
                 <FontAwesomeIcon icon={faEarthAfrica} />
               </span>
@@ -102,35 +112,30 @@ const Sidebar = ({ setTopic, sidebarActive, setSidebarActive }) => {
               <span>Music</span>
             </Link>
           </li>
-          <li>
-            <Link
-              to={`saved/${user.uid}`}
-              onClick={() => setSidebarActive(false)}
-            >
-              <span>
-                <FontAwesomeIcon icon={faBookmark} />
-              </span>
-              <span>Saved</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={`profile/${user.uid}`}
-              onClick={() => setSidebarActive(false)}
-            >
-              <span>
-                <FontAwesomeIcon icon={faUser} />
-              </span>
-              <span>Profile</span>
-            </Link>
-          </li>
+          {user ? (
+            <>
+              <li>
+                <Link to="/saved" onClick={() => setSidebarActive(false)}>
+                  <span>
+                    <FontAwesomeIcon icon={faBookmark} />
+                  </span>
+                  <span>Saved</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`/profile/${user?.uid}`}
+                  onClick={() => setSidebarActive(false)}
+                >
+                  <span>
+                    <FontAwesomeIcon icon={faUser} />
+                  </span>
+                  <span>Profile</span>
+                </Link>
+              </li>{" "}
+            </>
+          ) : null}
         </ul>
-        <button className="btn tweet">
-          <span>
-            <FontAwesomeIcon icon={faFeatherPointed} />
-          </span>
-          <span>Tweet</span>
-        </button>
       </div>
       <div className="bottom">
         {user ? (

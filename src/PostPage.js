@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Post from "./Post";
 import { db } from "./backend/firebase";
-import "./scss/postPage.scss";
+
 const PostPage = () => {
   const params = useParams();
   const [post, setPost] = useState(null);
@@ -13,7 +13,7 @@ const PostPage = () => {
     });
   }, []);
   return post ? (
-    <div className="postpage">
+    <div className="sec">
       <Post
         id={params.id}
         text={post.text}

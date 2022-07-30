@@ -1,8 +1,5 @@
 @use "./colors.scss" as *;
 .feed {
-  width: calc(100% - 226.16px * 2);
-  margin-left: 226.16px;
-  border-right: 0.8px solid rgba($color: #fff, $alpha: 0.2);
   .addPost {
     padding: 15px 20px;
     border-bottom: 0.8px solid rgba($color: #fff, $alpha: 0.2);
@@ -14,7 +11,7 @@
     form {
       display: flex;
       gap: 10px;
-      img {
+      > img {
         width: 48px;
         height: 48px;
         border-radius: 50%;
@@ -45,10 +42,31 @@
             color: #bebebe;
           }
         }
-        > div {
+        .image {
+          position: relative;
+          button.remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: $blue;
+            color: #fff;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50;
+            border: 0;
+          }
+          img {
+            width: 100%;
+            object-fit: cover;
+            border-radius: 6px;
+          }
+        }
+        .inprow {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          flex-wrap: wrap;
           margin-top: 10px;
           label {
             cursor: pointer;
@@ -72,7 +90,7 @@
               font-weight: 500;
             }
           }
-          button {
+          > button {
             background-color: $blue;
             border: 0;
             color: #fff;
@@ -85,147 +103,8 @@
       }
     }
   }
-  .posts {
-    .post {
-      padding: 15px 20px;
-      display: flex;
-      gap: 10px;
-      position: relative;
-      border-bottom: 0.8px solid rgba($color: #fff, $alpha: 0.2);
-      > img {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-      }
-      > div {
-        flex: 1;
-        .up {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          > span {
-            z-index: 2;
-            &:first-child {
-              color: #fff;
-              font-weight: 500;
-              font-size: 16px;
-            }
-            &:nth-child(2) {
-              font-size: 13px;
-              color: $gray;
-            }
-          }
-          button {
-            border: 0;
-            background-color: transparent;
-            cursor: pointer;
-            margin-left: auto;
-            color: $blue;
-            cursor: pointer;
-          }
-        }
-        > p {
-          margin-top: 5px;
-          color: #fff;
-        }
-        .image {
-          margin-top: 10px;
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center center;
-          height: 500px;
-          border-radius: 5px;
-        }
-        .react {
-          padding-top: 20px;
-          display: flex;
-          justify-content: space-between;
-          button {
-            background-color: transparent;
-            border: 0;
-            color: $blue;
-            font-size: 20px;
-          }
-          span.number {
-            display: block;
-            text-align: center;
-            color: $gray;
-            font-size: 14px;
-          }
-        }
-        .form {
-          display: flex;
-          padding: 8px;
-          margin-top: 5px;
-          border: 1.8px solid rgba($color: #fff, $alpha: 0.2);
-          border-radius: 5px;
-          &.error {
-            border-color: $blue;
-          }
-          input {
-            color: #fff;
-            caret-color: #fff;
-            font-family: inherit;
-            border: 0;
-            flex: 1;
-            background-color: transparent;
-          }
-          button {
-            background-color: transparent;
-            border: 0;
-            font-weight: 500;
-            color: $blue;
-          }
-          button.error {
-            color: $blue;
-          }
-        }
-        .comments {
-          margin-top: 20px;
-          .comment {
-            display: flex;
-            gap: 10px;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            img {
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-            }
-            a {
-              color: #fff;
-              display: inline-block;
-              margin-right: 5px;
-            }
-            span.time {
-              color: $gray;
-              font-size: 14px;
-            }
-            p {
-              color: #fff;
-              font-size: 14px;
-              margin-top: 5px;
-            }
-            button.delete {
-              color: $blue;
-              background-color: transparent;
-              border: 0;
-              margin-left: auto;
-              font-size: 14px;
-            }
-          }
-          a {
-            margin-left: auto;
-            display: flex;
-            justify-content: flex-end;
-            font-size: 14px;
-            color: $blue;
-          }
-        }
-      }
-    }
-  }
 }
+
 @media (max-width: 991px) {
   .feed {
     width: calc(100% - 226.16px);
@@ -238,5 +117,29 @@
     margin-left: 0;
     border-top: 0.8px solid rgba($color: #fff, $alpha: 0.2);
     border-left: 0.8px solid rgba($color: #fff, $alpha: 0.2);
+  }
+}
+@media (max-width: 576px) {
+  .feed {
+    .addPost {
+      padding: 10px 15px;
+      form {
+        .inputs {
+          > div {
+            gap: 10px;
+            justify-content: flex-end;
+            > label {
+              align-self: center;
+            }
+            .radioCont {
+              gap: 5px;
+            }
+            button {
+              padding: 5px 15px;
+            }
+          }
+        }
+      }
+    }
   }
 }
