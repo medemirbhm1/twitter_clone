@@ -562,20 +562,20 @@ textarea {
     padding: 10px 15px;
   }
 
-  .feed .addPost form .inputs > div {
+  .feed .addPost form .inputs .inprow {
     justify-content: flex-end;
     gap: 10px;
   }
 
-  .feed .addPost form .inputs > div > label {
+  .feed .addPost form .inputs .inprow > label {
     align-self: center;
   }
 
-  .feed .addPost form .inputs > div .radioCont {
+  .feed .addPost form .inputs .inprow .radioCont {
     gap: 5px;
   }
 
-  .feed .addPost form .inputs > div button {
+  .feed .addPost form .inputs .inprow button {
     padding: 5px 15px;
   }
 }
