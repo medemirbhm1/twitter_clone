@@ -18,7 +18,7 @@ function RecentAcc() {
   }, []);
   return (
     <div className="recentAcc">
-      <h2>Recent accounts</h2>
+      <h2>Recent created accounts</h2>
       {recentUsers
         ? Object.entries(recentUsers).map(([uid, user]) => (
             <User

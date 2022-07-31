@@ -87,21 +87,6 @@
         }
       }
     }
-    .btn.tweet {
-      padding: 15px;
-      border-radius: 50%;
-      display: flex;
-      width: fit-content;
-      align-items: center;
-      justify-content: center;
-      height: 50px;
-      span:first-child {
-        display: inline;
-      }
-      span:last-child {
-        display: none;
-      }
-    }
     .btn {
       padding: 10px;
       width: 40px;

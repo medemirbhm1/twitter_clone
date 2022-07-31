@@ -14,6 +14,7 @@ import PostPage from "./PostPage";
 import Saved from "./Saved";
 import RecentAcc from "./RecentAcc";
 import LoadingContext from "./LoadingContext";
+import SignIn from "./SignIn";
 
 const App = () => {
   const user = useState(null);
@@ -42,7 +43,7 @@ const App = () => {
       <React.StrictMode>
         {loading ? (
           <Loader />
-        ) : (
+        ) : user[0] ? (
           <userContext.Provider value={user}>
             <LoadingContext.Provider value={setLoading}>
               <div className="container">
@@ -64,6 +65,8 @@ const App = () => {
               </div>
             </LoadingContext.Provider>
           </userContext.Provider>
+        ) : (
+          <SignIn />
         )}
       </React.StrictMode>
     </div>

@@ -93,24 +93,6 @@
     display: none;
   }
 
-  .sidebar .btn.tweet {
-    width: fit-content;
-    height: 50px;
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    display: flex;
-  }
-
-  .sidebar .btn.tweet span:first-child {
-    display: inline;
-  }
-
-  .sidebar .btn.tweet span:last-child {
-    display: none;
-  }
-
   .sidebar .btn {
     width: 40px;
     padding: 10px;
@@ -401,6 +383,28 @@ textarea {
     margin-top: 20px;
     margin-left: 0;
   }
+}
+
+.signin {
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.signin .btn {
+  color: #15202b;
+  background-color: #fff;
+  border: 0;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
 }
 
 .feed .addPost {
