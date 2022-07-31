@@ -550,7 +550,7 @@ textarea {
 
   .feed .addPost form .inputs .inprow {
     justify-content: flex-end;
-    gap: 10px;
+    gap: 20px 10px;
   }
 
   .feed .addPost form .inputs .inprow > label {
