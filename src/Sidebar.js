@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import "./scss/sidebar.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate } from "react-router-dom";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import {
   faEarthAfrica,
   faFutbol,
@@ -11,6 +10,9 @@ import {
   faArrowRightFromBracket,
   faBookmark,
   faUser,
+  faE,
+  faShare,
+  faShareNodes,
 } from "@fortawesome/free-solid-svg-icons";
 import { auth } from "./backend/firebase";
 import userContext from "./userContext";
@@ -28,7 +30,7 @@ const Sidebar = ({ setTopic, sidebarActive, setSidebarActive }) => {
       <div className="top">
         <Link to="/" onClick={() => window.location.reload()}>
           <div className="logo">
-            <FontAwesomeIcon icon={faTwitter} />
+            <FontAwesomeIcon icon={faShareNodes} />
           </div>
         </Link>
         <ul className="links">

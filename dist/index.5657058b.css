@@ -407,6 +407,10 @@ textarea {
   display: flex;
 }
 
+.feed {
+  padding-bottom: 20px;
+}
+
 .feed .addPost {
   border-bottom: .8px solid #fff3;
   padding: 15px 20px;

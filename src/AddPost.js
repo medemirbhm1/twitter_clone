@@ -137,7 +137,7 @@ const AddPost = ({ user }) => {
                   </label>
                 </div>
                 <button className="btn" type="submit">
-                  Tweet
+                  Post
                 </button>
               </div>
             </div>
