@@ -10,8 +10,6 @@ import {
   faArrowRightFromBracket,
   faBookmark,
   faUser,
-  faE,
-  faShare,
   faShareNodes,
 } from "@fortawesome/free-solid-svg-icons";
 import { auth } from "./backend/firebase";
